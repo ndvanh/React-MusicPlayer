@@ -1,12 +1,9 @@
 import './App.css'
 import { useRef,useState}  from 'react' 
-import Navbar from './components/Navbar'
-import Header from './components/Header'
-import ListSongs from './components/ListSongs'
-import PlayBar from './components/PlayBar'
-import Infomations from './components/Infomations'
+import {Home,Header, Lib, Navbar,PlayBar,Search,SonginfiWrapper,NotFound} from './components/index'
 import { Songs } from './MusicContext'
 import Music from './data/songs.json'
+import { Routes,Route } from 'react-router-dom'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -35,24 +32,27 @@ function App() {
   // get song
   const [song,setSong] = useState(Music[0])
   const handlePlay = (songid) => {
-  const song =  Music.find(song => song.id === songid)
-   if (!song){
+  const thesong =  Music.find(element => element.id === songid)
+   if (!thesong){
     setSong(Music[0])
    }
    else {
-    setSong(song)
+    setSong(thesong)
    }
   }
   return (
     <div className="App">
   <Songs.Provider value={{value1 :Music, value2 :song, value3: handlePlay}}>
-  <div className="h-[calc(100vh_-_90px)] overflow-y-scroll" ref={musicRef} >
   <Navbar/>
-   <div className="ml-[250px]">
+  <div className="h-[calc(100vh_-_90px)] overflow-y-scroll" ref={musicRef} >
   <Header/>
-   <Infomations/>
-   <ListSongs data={musicRef}/>
-   </div>
+  <Routes>
+    <Route path='/' element={<Home/>} />
+    <Route path='/timkiem' element={<Search/>} />
+    <Route path='/thuvien' element={<Lib/>} />
+    <Route path='/playlist' element={<SonginfiWrapper data={musicRef}/>}/>
+    <Route path='*' element={<NotFound/>} />
+  </Routes>
   </div>
    <PlayBar/>
   </Songs.Provider>

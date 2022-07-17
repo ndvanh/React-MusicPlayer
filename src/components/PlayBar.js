@@ -1,8 +1,8 @@
 import React from 'react'
 import { useContext,useRef,useState,useEffect } from 'react'
 import { Songs } from '../MusicContext'
-import Unmute from '../icons/speaker/Unmute'
-import {Loop,Loop1,Next,Prev,Play,Pause} from '../icons/play/index'
+import Unmute from './icons/speaker/Unmute'
+import {Loop,Loop1,Next,Prev,Play,Pause} from './icons/play/index'
 
 export default function PlayBar() {
   const {value2,value3} = useContext(Songs)
@@ -94,12 +94,12 @@ const toggleLoop = () => {
       <div className="flex items-center basis-3/12">
       <img alt={`${value2.name}`} 
       src={value2.links.images[1].url} 
-      className="h-[56px] w-[56px]"
+      className="h-[56px] w-[56px] sm:h-[30px] sm:w-[30px]"
       loading='lazy'
       />
       <div className="ml-3">
-        <div><span className="capitalize font-bold cursor-pointer text-[15px]" draggable="true">{value2.name}</span></div>
-        <div><span className="text-text1 cursor-pointer text-[12px]" draggable="true">{value2.author}</span></div>
+        <div><span className="capitalize font-bold cursor-pointer text-[15px] sm:text-[10px]" draggable="true">{value2.name}</span></div>
+        <div><span className="text-text1 cursor-pointer text-[12px] sm:text-[10px]" draggable="true">{value2.author}</span></div>
       </div>
       </div>
       <div className="basis-6/12 text-center">

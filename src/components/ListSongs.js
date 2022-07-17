@@ -2,12 +2,12 @@ import React from 'react'
 import { useContext,useState,useEffect}  from 'react' 
 import { Songs } from '../MusicContext'
 
-export default function ListSongs(props) {
+export default function ListSongs({data}) {
  const {value1,value2,value3} =  useContext(Songs)
  const [sticky , setSticky] = useState("")
 
 useEffect(()=>{
-  const musicRef = props.data.current
+  const musicRef = data.current
   const handleSticky = () => {
     const scrollTop  = musicRef.scrollTop
     const stickyClass = scrollTop >= 320 ? "bg-[#1f1f1f]" : ""
@@ -25,7 +25,6 @@ useEffect(()=>{
   setPickID(songid)
   value3(songid)
  }
-
 useEffect(() => {
   setPickID(value2.id)
 },[value2])

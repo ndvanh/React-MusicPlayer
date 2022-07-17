@@ -1,17 +1,18 @@
  export const MenuItems = [
     {
         title:'Trang chủ',
-        url:'#home',
+        url:'/',
         icon:'fa-solid fa-house'
     },
     {
         title:'Tìm kiếm',
-        url:'#search',
+        url:'/timkiem',
         icon:'fa-solid fa-magnifying-glass'
     },
     {
         title:'Thư viện',
-        url:'#songs',
+        url:'/thuvien',
         icon:'fa-solid fa-music'
     },
+    
 ]
