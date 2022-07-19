@@ -17,6 +17,16 @@ module.exports = {
         current: 'currentColor',
         'text1':'#ffffffb3',
       },
+      display: ["group-hover"],
+      keyframes: {
+        fade: {
+          'from': { bottom:'-8px' },
+          'to': { bottom: '8px' },
+        }
+      },
+      animation: {
+        'move': 'fade 0.3s linear',
+      }
     },
   },
   plugins: [],

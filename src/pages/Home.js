@@ -1,13 +1,14 @@
 import React from 'react'
-import {useState,useEffect}  from 'react' 
+import {useState,useEffect,useContext} from 'react' 
 import {Play} from '../components/icons/play/index'
 import {Link} from 'react-router-dom'
+import { Songs } from '../MusicContext'
 
 export default function Home() {
   const [time,setTime] = useState('Chào buổi sáng')
   const hours = new Date().getHours()
   useEffect(() => {
-    if(hours >= 0 && hours < 12 ){
+    if(hours >= 4 && hours < 12 ){
       setTime('Chào buổi sáng 🌅')
     } else if(hours >= 12 && hours < 18) {
       setTime('Chào buổi chiều ⛅')
@@ -16,12 +17,15 @@ export default function Home() {
     }
    
   },[hours])
+
+  const {value1} =  useContext(Songs)
+
   return (
-    <div className="ml-[250px] bg-[#121212] text-white h-full">
+    <div className="ml-[250px] bg-[#121212] text-white sm:ml-0">
       <div className="px-8 py-6">
         <h1 className="font-bold text-[30px]">{time}</h1>
         <div className="py-5">
-        <h2 className="font-bold text-[20px]">Playlist #</h2>
+        <h2 className="font-bold text-[25px]">Playlist #</h2>
         <Link to='/playlist'>
         <div className="flex bg-[#242424] rounded-[5px]  mt-5 cursor-pointer hover:bg-[#2c2e31] duration-300">
           <div className="p-5">
@@ -35,7 +39,27 @@ export default function Home() {
         </Link>
         </div>
         <div className="py-5">
-          <h2 className="font-bold text-[20px]">Nghệ sĩ nổi bật</h2>
+          <h2 className="font-bold text-[25px]">Nghệ sĩ được đề xuất</h2>
+          <div className="grid grid-cols-6 gap-5 mt-5">
+          {value1.filter(song=>song.hot === true).map((fsong,index)=>(
+            <div  className="bg-[#181818] hover:bg-[#2e2e2e] p-4 rounded-[5px] duration-500 group cursor-pointer" key={index}>
+            <div className="mb-3">
+              <div className="pt-[100%] bg-black relative rounded-[5px]">
+             <div> <img alt={`Ảnh ${fsong.author}`} src={fsong.links.images[0].url} loading='lazy' 
+              className="h-full w-full absolute top-0 left-0 rounded-[5px] object-cover"/></div>
+              <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:animate-move duration-300">
+                <button className="bg-white p-3 rounded-full"><Play/></button>
+              </div>
+              </div>
+            </div>
+            <div className="pb-3">
+              <h3 className="text-[16px] font-bold overflow-hidden whitespace-nowrap text-ellipsis">{fsong.author}</h3>
+                <span className="py-1 block text-[14px] text-text1">Nghệ sĩ</span>
+              </div>
+          </div>
+          ))}
+          
+          </div>
         </div>
       </div>
     </div>

@@ -42,14 +42,14 @@ useEffect(() => {
               </tr>
             </thead>
             <tbody>
-            {value1.map((song,index) =>(
+            {value1.map((song) =>(
                   <tr 
                   className='hover:bg-[#2a2a2a] hover:rounded-[5px] hover:text-white h-14 cursor-pointer duration-100' 
-                  key={index}
+                  key={song.id}
                   style = {pickid === song.id ? {color :'white',backgroundColor:'#2a2a2a'} : {}}
                   onClick={() =>handlePlay(song.id) }
                   >
-                  <td className='px-[30px] rounded-l-[5px]'>{index + 1}</td>
+                  <td className='px-[30px] rounded-l-[5px]'>{song.id + 1}</td>
                   <td className='flex items-center my-[10px]'> <img alt={`${song.name}`} src={song.links.images[1].url} className="h-[50px] w-[50px]" loading='lazy'/>
                    <span className='pl-[15px]'>{song.name}</span></td>
                   <td>{song.author}</td>

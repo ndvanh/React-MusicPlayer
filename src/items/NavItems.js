@@ -12,7 +12,7 @@
     {
         title:'Thư viện',
         url:'/thuvien',
-        icon:'fa-solid fa-music'
+        icon:'fa-solid fa-lines-leaning'
     },
     
 ]

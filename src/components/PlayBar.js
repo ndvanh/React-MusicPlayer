@@ -6,7 +6,7 @@ import {Loop,Loop1,Next,Prev,Play,Pause} from './icons/play/index'
 
 export default function PlayBar() {
   const {value2,value3} = useContext(Songs)
-  const animationRef = useRef()
+  const animationRef = useRef(null)
   const speakerRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const togglePlaying = () => {
@@ -21,6 +21,11 @@ export default function PlayBar() {
     }
     setIsPlaying(!isPlaying)
   }
+
+  const probarRef = useRef(null)
+  const [duration,setDuration] = useState(0) 
+  const [curtime,setCurtime] = useState(0) 
+
 // run process bar
   const whilePlaying = () => {
     probarRef.current.value = speakerRef.current.currentTime 
@@ -28,9 +33,6 @@ export default function PlayBar() {
     animationRef.current = requestAnimationFrame(whilePlaying)
   }
 
-  const probarRef = useRef()
-  const [duration,setDuration] = useState(0)
-  const [curtime,setCurtime] = useState(0)
   const calcTime = (secs) =>{
     const minutes = Math.floor(secs/60)
    // const returnMinutes = minutes<10 ? `0${minutes}` : `${minutes}`
@@ -118,7 +120,7 @@ const toggleLoop = () => {
         <button className="relative top-1 left-[50px] " onClick={handleNext}><Next/></button>
         </div>
           <div className="flex items-center">
-            <span className="relative bottom-[3px] right-2">{calcTime(curtime)}</span>
+            <span className="relative right-2">{calcTime(curtime)}</span>
           <input 
         min="0" max="100" defaultValue="0" step="1"
         type="range" 
@@ -126,7 +128,7 @@ const toggleLoop = () => {
         ref={probarRef}
         onChange={changeRange}
        />
-       <span className="relative bottom-[3px] left-2">{(duration && !isNaN(duration)) && calcTime(duration)}</span>
+       <span className="relative left-2">{(duration && !isNaN(duration)) && calcTime(duration)}</span>
           </div>    
       </div>
       <div className="flex items-center basis-3/12 justify-end">

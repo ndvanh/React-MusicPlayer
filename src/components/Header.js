@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 function Header() {
   return (
-    <header className=" text-white py-4 px-8 flex justify-between sticky top-0 bg-[#6c47ff] ml-[250px] sm:ml-0">
+    <header className=" text-white py-4 px-8 flex justify-between sticky top-0 bg-[#6c47ff] ml-[250px] sm:ml-0 z-[1]">
       <div className="">
         <button className="bg-[#2c261e] h-[32px] w-[32px] rounded-[50%]">
           <i className="fa-solid fa-angle-left text-[22px] leading-[32px] text-text1"></i></button>
