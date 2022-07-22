@@ -32,12 +32,11 @@ function Navbar() {
      <div className="mt-[30px] relative">
       <div className="">
       <ul>
-      <li className="text-[15px] pt-4 text-text1 hover:text-white duration-500">  
-      <NavLink to='/newplaylist' className="font-bold text-[16px] text-text1 hover:text-white duration-500 block w-full" style={linkActive}>
+      <li className="text-[16px] pt-4 text-text1 hover:text-white duration-500 font-bold cursor-pointer">  
         <i className="fa-solid fa-square-plus mr-4 text-[20px] h-[20px] w-[20px]">
-      </i>Tạo playlist</NavLink></li>
+      </i>Tạo playlist</li>
       <li className="text-[15px] pt-4 text-text1 hover:text-white duration-500">
-        <NavLink to='/baihatyeuthich'  className="font-bold text-[16px] text-text1 hover:text-white duration-500 block w-full" style={linkActive}>
+        <NavLink to='/library/favsongs'  className="font-bold text-[16px] text-text1 hover:text-white duration-500 block w-full" style={linkActive}>
           <i className="fa-solid fa-heart-circle-plus mr-4 text-[20px] h-[20px] w-[20px]">
         </i>Bài hát yêu thích</NavLink></li>
       </ul>

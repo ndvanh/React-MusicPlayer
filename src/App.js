@@ -1,6 +1,8 @@
 import './App.css'
-import { useRef,useState}  from 'react' 
-import {Home,Header, Lib, Navbar,PlayBar,Search,SonginfiWrapper,NotFound} from './components/index'
+import {useState}  from 'react' 
+import {Header,Navbar,PlayBar,PlayList} from './components/index'
+import {Home,Search,NotFound,RecommendedArtist} from './pages/index'
+import {Lib,LibArtists,LibPlaylist} from './pages/Lib/index'
 import { Songs } from './MusicContext'
 import Music from './data/songs.json'
 import { Routes,Route } from 'react-router-dom'
@@ -28,7 +30,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
-  const musicRef = useRef(null)
   // get song
   const [song,setSong] = useState(Music[0])
   const handlePlay = (songid) => {
@@ -43,14 +44,19 @@ function App() {
   return (
     <div className="App">
   <Songs.Provider value={{value1 :Music, value2 :song, value3: handlePlay}}>
+  <div className="mb-[80px]">
   <Navbar/>
-  <div className="h-[calc(100vh_-_90px)] overflow-y-scroll" ref={musicRef} >
   <Header/>
   <Routes>
     <Route path='/' element={<Home/>} />
-    <Route path='/timkiem' element={<Search/>} />
-    <Route path='/thuvien' element={<Lib/>} />
-    <Route path='/playlist' element={<SonginfiWrapper data={musicRef}/>}/>
+    <Route path='/search' element={<Search/>} />
+    <Route path='/library' element={<Lib/>}>
+      <Route  index element={<LibPlaylist/>}/>
+      <Route path='lib_playlist' element={<LibPlaylist/>}/>
+      <Route path='lib_artists' element={<LibArtists/>}/>
+    </Route>
+    <Route path='/playlist' element={<PlayList/>}/>
+    <Route path='/artists' element={<RecommendedArtist/>}/>
     <Route path='*' element={<NotFound/>} />
   </Routes>
   </div>

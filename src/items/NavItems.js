@@ -6,12 +6,12 @@
     },
     {
         title:'Tìm kiếm',
-        url:'/timkiem',
+        url:'/search',
         icon:'fa-solid fa-magnifying-glass'
     },
     {
         title:'Thư viện',
-        url:'/thuvien',
+        url:'/library/lib_playlist',
         icon:'fa-solid fa-lines-leaning'
     },
     
